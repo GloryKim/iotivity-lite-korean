@@ -14,3 +14,6 @@
 - Korean : 한국어로 설명을 위한 파일들
 - 개발일지.md : 프로그램 업데이트를 위해 정리한 개발일지
 - README.md : 본 파일
+
+## 참고할 사이트
+- IoTivity 공식 깃허브 (https://github.com/iotivity)
