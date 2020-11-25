@@ -8,10 +8,10 @@
 - Editor : VisualCode(vsCode)
 - Author : verycosy (https://github.com/verycosy), GloryKim (https://github.com/GloryKim)
 
-## Folder
+## Folder 설명
 
 - 201125_Orginal : 2020년 기준 iotivity-lite에서 가져온 파일들
-- Korean : 한국어로 설명을 위한 파일들
+- Korean : 한국어로 설명을 위한 파일들(이해를 위해서는 여기를 보세요.)
 - 개발일지.md : 프로그램 업데이트를 위해 정리한 개발일지
 - README.md : 본 파일
 
