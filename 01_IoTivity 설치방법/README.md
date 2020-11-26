@@ -7,3 +7,9 @@
 curl https://openconnectivity.github.io/IOTivity-Lite-setup/install.sh | bash
 ```
 04. 03과정이 조금 길어질수 있으니 여유를 가지기
+
+## 추신
+다음 사이트에 접속하면 
+https://github.com/openconnectivity
+
+다운받은 파일들을 확인 할 수 있음.
