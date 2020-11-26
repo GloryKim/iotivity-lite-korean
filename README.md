@@ -18,3 +18,4 @@
 ## 참고할 사이트
 - IoTivity 공식 깃허브 (https://github.com/iotivity)
 - Linux ubuntu에서 개발을 위한 공식 깃허브 (https://github.com/iotivity/otgc-linux)
+- IoTivity 개발 내용을 사람들과 공유하는 사이트 (https://iotivity.groups.io/g/iotivity-dev/topics)
