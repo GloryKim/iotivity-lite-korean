@@ -19,3 +19,5 @@
 - IoTivity 공식 깃허브 (https://github.com/iotivity)
 - Linux ubuntu에서 개발을 위한 공식 깃허브 (https://github.com/iotivity/otgc-linux)
 - IoTivity 개발 내용을 사람들과 공유하는 사이트 (https://iotivity.groups.io/g/iotivity-dev/topics)
+- IoTivity 공식사이트 (맨 처음 시작할때 필요한 과정의 사이트입니다. getting-started 버튼을 눌러서 진행하세요) https://iotivity.org/
+- IoTivity lite 설치 방법을 알려주는 사이트 (https://openconnectivity.github.io/IOTivity-Lite-setup/#development-flow)
