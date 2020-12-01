@@ -53,5 +53,5 @@ cd iot-lite
 
 14. 정상적으로 되었다면 다음과 같은 문구가 나오면 ctrl+z 눌러서 나오면 된다.
 ```
-OCF server "server_lite_5340" running, wating on incomming connections.
+OCF server "server_lite_5340" running, waiting on incomming connections.
 ```
