@@ -9,7 +9,9 @@
 - Author : verycosy (https://github.com/verycosy), GloryKim (https://github.com/GloryKim)
 
 ## Folder 설명
-
+- 01_IoTivity 설치방법 : IoTivity 설치방법 소개!
+- 02_OCF 통신설정하기 : OCF통신 초기 설명
+- 03_온보딩하기 : 온보딩 하는 방법 (난이도 상)
 - 201125_Orginal : 2020년 기준 iotivity-lite에서 가져온 파일들
 - Korean : 한국어로 설명을 위한 파일들(아직 진행 중)
 - 개발일지.md : 프로그램 업데이트를 위해 정리한 개발일지
