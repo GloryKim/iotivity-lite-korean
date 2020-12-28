@@ -1,0 +1,144 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "BinarySwitch": {
+      "properties": {
+        "if": {
+          "description": "The OCF Interface set supported by this Resource.",
+          "items": {
+            "enum": [
+              "oic.if.a",
+              "oic.if.baseline"
+            ],
+            "type": "string"
+          },
+          "minItems": 2,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "n": {
+          "description": "Friendly name of the Resource",
+          "maxLength": 64,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rt": {
+          "default": [
+            "oic.r.switch.binary"
+          ],
+          "description": "The Resource Type.",
+          "items": {
+            "enum": [
+              "oic.r.switch.binary"
+            ],
+            "maxLength": 64,
+            "type": "string"
+          },
+          "minItems": 1,
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "value": {
+          "description": "The status of the switch.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "license": {
+      "name": "OCF Data Model License",
+      "url": "https://github.com/openconnectivityfoundation/core/blob/e28a9e0a92e17042ba3e83661e4c0fbce8bdc4ba/LICENSE.md",
+      "x-copyright": "Copyright 2018-2019 Open Connectivity Foundation, Inc. All rights reserved."
+    },
+    "termsOfService": "https://openconnectivityfoundation.github.io/core/DISCLAIMER.md",
+    "title": "server_lite_1593",
+    "version": "2019-02-22"
+  },
+  "parameters": {
+    "interface": {
+      "enum": [
+        "oic.if.a",
+        "oic.if.baseline"
+      ],
+      "in": "query",
+      "name": "if",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/binaryswitch": {
+      "get": {
+        "description": "This Resource describes a binary switch (on/off).\nThe Property \"value\" is a boolean.\nA value of 'true' means that the switch is on.\nA value of 'false' means that the switch is off.\n",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "if": [
+                "oic.if.a",
+                "oic.if.baseline"
+              ],
+              "rt": [
+                "oic.r.switch.binary"
+              ],
+              "value": false
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "$ref": "#/parameters/interface"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "value": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BinarySwitch"
+            },
+            "x-example": {
+              "value": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
+}
