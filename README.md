@@ -14,8 +14,8 @@
 - 03_온보딩하기 : 온보딩 하는 방법 (난이도 상)
 - 201125_Orginal : 2020년 기준 iotivity-lite에서 가져온 파일들
 - 201228_backup_iot-lite : 온보딩까지 즉 03 까지 완벽하게 구현된 iotivity 폴더 전체
-- 개발일지.md : 프로그램 업데이트를 위해 정리한 개발일지
-- README.md : 본 파일
+- README.md : 본 설명서
+- README_TXT.txt : 텍스트 파일 설명서
 
 ## 참고할 사이트
 - IoTivity 공식 깃허브 (https://github.com/iotivity)
