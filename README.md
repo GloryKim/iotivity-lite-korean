@@ -25,4 +25,4 @@
 - IoTivity lite 설치 방법을 알려주는 사이트 (https://openconnectivity.github.io/IOTivity-Lite-setup/#development-flow)
 - (공식) OCF 공식 깃허브 주소 (https://github.com/openconnectivity)
 - 온보딩 하는 방법이 적혀있는 공식 깃허브(주의 공식 문서가 틀린 부분이 있으니 본 저장소에 있는 글을 꼭 참고할 것)(https://github.com/iotivity/iotivity-lite)
-- IoTivity Lite Api 공식 문서 : https://api-docs.iotivity.org/
+- IoTivity Lite Api 공식 문서 : (https://api-docs.iotivity.org/)
