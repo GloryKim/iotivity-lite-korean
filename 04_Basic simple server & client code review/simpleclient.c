@@ -158,17 +158,23 @@ get_light(oc_client_response_t *data)
   PRINT("GET_light:\n");//28_온보딩 과정에서 Get light라고 뜰텐데
   //28_그전에 나오는 글귀가 있을 것이다 .
   /*29_PRINT("Resource %s hosted at endpoints:\n", a_light);*/ // 이쪽 문구가 먼저 호출 된다.
-  oc_rep_t *rep = data->payload; //30_데이터가 있지않지만 데이터가 있다면 상단에 있는 매개변수를통해서 값을 넣어준다
+  oc_rep_t *rep = data->payload; //30_데이터가 있지않지만 데이터가 있다면 상단에 있는 매개변수를통해서 값을 넣어준다 + 이 부분은 응답을 받는 부분
   //31_oc_do_get 같이 이런 api를 찾고자하면 다음 링크로 가면 된다.https://api-docs.iotivity.org/group__doc__module__tag__client__state.html#ga34d2e906ebd125b8148817f55bda4b2c
-  while (rep != NULL) {
+  while (rep != NULL) {// 32_더이상 받을 정보가 없을때 까지 반복문
     PRINT("key %s, value ", oc_string(rep->name));
     switch (rep->type) {
     case OC_REP_BOOL:
-      PRINT("%d\n", rep->value.boolean);
+      PRINT("%d\n", rep->value.boolean); //32_받은 값이 bool 값일때
+      /* 출력문
+      key state, value 0
+      */
       state = rep->value.boolean;
       break;
     case OC_REP_INT:
       PRINT("%lld\n", rep->value.integer);
+      /* 출력문
+      key power, value 1
+      */
       power = (int)rep->value.integer;
       break;
     case OC_REP_STRING:
@@ -181,10 +187,11 @@ get_light(oc_client_response_t *data)
     default:
       break;
     }
-    rep = rep->next;
+    rep = rep->next; //34_반복문을 계속 돌려주기 위해서 rep 값이 NULL이 될때 까지
   }
 
-  if (oc_init_put(a_light, light_server, NULL, &put_light, LOW_QOS, NULL)) {
+  if (oc_init_put(a_light, light_server, NULL, &put_light, LOW_QOS, NULL)) {//
+    //밑의 4줄은 simple server로 부터 받을 값들이다.
     oc_rep_start_root_object();
     oc_rep_set_boolean(root, state, true);
     oc_rep_set_int(root, power, 15);
@@ -212,7 +219,8 @@ discovery(const char *anchor, const char *uri, oc_string_array_t types, //discov
   uri_len = (uri_len >= MAX_URI_LENGTH) ? MAX_URI_LENGTH - 1 : uri_len; //11_현재 uri의 길이를 받아서 값을 확인한다.
   for (i = 0; i < (int)oc_string_array_get_allocated_size(types); i++) { //15_API문서를 꼭 확인해서 봐야한다.
     char *t = oc_string_array_get_item(types, i);//16_t라는 포인터로 스트링 값을 가져온다.
-    if (strlen(t) == 10 && strncmp(t, "core.light", 10) == 0) {//12_여기서 매우 중요한 점은 core.light는 .포함해서 총 10개의 문자열로 구성되어있는데,
+    if (strlen(t) == 10 && strncmp(t, "core.light", 10) == 0) {//b.여기에서 core.light를 다른것으로 바꾸어 줄려고 할때 예를 들면 glory.light라고 한다면 여기에 문구를 바꿔주고 문자열 길이도 10에서 11로 바꿔줘야한다.
+    //12_여기서 매우 중요한 점은 core.light는 .포함해서 총 10개의 문자열로 구성되어있는데,
     //13_여기에서 만약 core.light 대신에 glory.light를 하면 11개의 문자열이라서 10으로 적혀있는걸 전부 11로 바꿔줘야만 한다.
     //14_if (strlen(t) == 11 && strncmp(t, "glory.light", 11) == 0) {
     //17_길이가 일치할때 if 문이 구동되면서 아래의 작업이 진행된다.
@@ -245,7 +253,7 @@ discovery(const char *anchor, const char *uri, oc_string_array_t types, //discov
 static void
 issue_requests(void)
 {
-  oc_do_ip_discovery("core.light", &discovery, NULL);
+  oc_do_ip_discovery("core.light", &discovery, NULL);//a.(매우중요)여기 부분에서 바꾸는 것이다. 다 바꾸었으면 make 작업을 해준다.
 }//09_ip를 찾을거야 core.light라는 이것에 대해서 리소스를 찾을 것이고 찾는작업에서 discovery라는 함수를 사용할 것이다.
 //10_dicovery함수에서 보면 uri가 여기에서는 "core.light" 이다.
 

@@ -1,17 +1,11 @@
 /*
-// Copyright (c) 2016 Intel Corporation
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+Title : simpleserver code review
+Editor : VisualCode(vsCode)
+Author : verycosy (https://github.com/verycosy), GloryKim (https://github.com/GloryKim)
+*/
+
+/*
+꼭 중요한 사실은 코드 편집을 다하고 나서 
 */
 
 #include "oc_api.h"
@@ -64,6 +58,8 @@ get_light(oc_request_t *request, oc_interface_mask_t iface_mask, void *user_data
   oc_send_response(request, OC_STATUS_OK);
 }
 
+//02_post light로 들어왔을때 statue는 true로 power는 15로 들어왔었다.
+//03_ 그러면 서버측에서 그 값을 받아오면서 파싱을 해줘야한다.
 static void
 post_light(oc_request_t *request, oc_interface_mask_t iface_mask, void *user_data)
 {
@@ -74,11 +70,16 @@ post_light(oc_request_t *request, oc_interface_mask_t iface_mask, void *user_dat
   while (rep != NULL) {
     PRINT("key: %s ", oc_string(rep->name));
     switch (rep->type) {
-    case OC_REP_BOOL:
+    /*
+    출력문
+    key : state value : 1
+    key : power value : 15
+    */
+    case OC_REP_BOOL: //04_BOOL 값일때     key : state value : 1 이렇게 출력이  나오고
       state = rep->value.boolean;
       PRINT("value: %d\n", state);
       break;
-    case OC_REP_INT:
+    case OC_REP_INT: //05_INT 일떄     key : power value : 15 값이 나오는 원리
       power = (int)rep->value.integer;
       PRINT("value: %d\n", power);
       break;
@@ -96,7 +97,7 @@ post_light(oc_request_t *request, oc_interface_mask_t iface_mask, void *user_dat
   }
   oc_send_response(request, OC_STATUS_CHANGED);
 }
-
+//01_client에서 server측에서 put 요청을 받았을때 아래와 같은 함수가 발동이 된다.
 static void
 put_light(oc_request_t *request, oc_interface_mask_t iface_mask,
            void *user_data)
@@ -109,16 +110,16 @@ put_light(oc_request_t *request, oc_interface_mask_t iface_mask,
 static void
 register_resources(void)
 {
-  oc_resource_t *res = oc_new_resource(NULL, "/a/light", 2, 0);
-  oc_resource_bind_resource_type(res, "core.light");
+  oc_resource_t *res = oc_new_resource(NULL, "/a/light", 2, 0);//06_resource의 URI는 /a/light 라는 것이다.
+  oc_resource_bind_resource_type(res, "core.light"); //a.매우 중요 이쪽에서 core.light 부분을 다른 부분으로 바꾸면 client 쪽에서도 똑같은 곳에서 바꿔야한다.
   oc_resource_bind_resource_type(res, "core.brightlight");
   oc_resource_bind_resource_interface(res, OC_IF_RW);
   oc_resource_set_default_interface(res, OC_IF_RW);
   oc_resource_set_discoverable(res, true);
   oc_resource_set_periodic_observable(res, 1);
-  oc_resource_set_request_handler(res, OC_GET, get_light, NULL);
-  oc_resource_set_request_handler(res, OC_PUT, put_light, NULL);
-  oc_resource_set_request_handler(res, OC_POST, post_light, NULL);
+  oc_resource_set_request_handler(res, OC_GET, get_light, NULL); //07_get요청일 땐 get_light
+  oc_resource_set_request_handler(res, OC_PUT, put_light, NULL);//08_put요청일 떈 put_light
+  oc_resource_set_request_handler(res, OC_POST, post_light, NULL);//09_post 요청일때 post_light
   oc_add_resource(res);
 }
 
